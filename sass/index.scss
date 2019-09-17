@@ -67,6 +67,7 @@ main {
     
     li {
       list-style: none;
+      position: relative;
       font-size: 2rem;
       padding: 10px 0px;
     }
@@ -92,4 +93,12 @@ footer {
   text-decoration: line-through;
   font-family: 'Courier New';
   font-size: 1.8rem;
+}
+
+li > .done::before  { 
+  content: "x";
+  position: absolute;
+  text-decoration: none;
+  right: 0;
+  color: rgba(40, 39, 39, 0.801);
 }
