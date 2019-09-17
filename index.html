@@ -7,26 +7,29 @@
   <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
   <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="css/index.css">
+  <script src="script/index.js"></script>
   <title>To Do List</title>
 </head>
 <body>
   <div class="container">
-  <header><h1>To Do List</h1></header>
-  <main>
-    <div class="input-container"><label for="todo">Add To Do's</label>
-      <input type="text" name="todo" placeholder="Input Your To Do">
-    <input type="submit" value="Add To Do"></div>
-    <ul>
-      <li><p class="done">Take the trash out</p></li>
-      <li><p>Clean the dishes</p></li>
-      <li><p>Reading a book</p></li>
-      <li><p>Buy food for Nora</p></li>
-      <li><p>Have Fun</p></li>
-    </ul>
-  </main>
-  <footer>
-    <h3>&copy; Hahi</h3>
-  </footer>
-</div>
+    <header><h1>To Do List</h1></header>
+    <main>
+      <form class="input-container">
+        <label for="todo">Add To Do's</label>
+        <input type="text" name="todo" placeholder="Input Your To Do">
+        <input id="submit" type="button" value="Add To Do">
+      </form>
+      <ul id="to-do-list">
+        <li><p class="done">Take the trash out</p></li>
+        <li><p>Clean the dishes</p></li>
+        <li><p>Reading a book</p></li>
+        <li><p class="done">Buy food for Nora</p></li>
+        <li><p>Have Fun</p></li>
+      </ul>
+    </main>
+    <footer>
+      <h3>&copy; Hahi</h3>
+    </footer>
+  </div>
 </body>
 </html>
