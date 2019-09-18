@@ -79,6 +79,7 @@ main {
       span {
         font-size: 1.3rem;
         padding: 10px;
+        display: none;
       }
     }
   }
@@ -110,6 +111,7 @@ footer {
   font-family: 'Courier New';
 }
 
-span:hover {
+p:hover, span:hover {
   cursor: pointer;
 }
+
