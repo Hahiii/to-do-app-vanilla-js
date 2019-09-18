@@ -4,7 +4,7 @@ import { displayRandomMessage } from './uiHelpers.js';
 
 window.addEventListener("DOMContentLoaded", ()=> {
   const toDoList = document.querySelector("#to-do-list");
-  const deleteItem = document.querySelector("span");
+  const deleteItem = document.querySelector(".close");
   const addItem = document.querySelector("#submit");
   let toDoListArr = getdata();
   
@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     
     newItemLi.dataset.id = itemObj.id
     newItemLi.appendChild(document.createElement("p")).innerText = inputValue;
-    newItemLi.appendChild(closeButton)
+    newItemLi.appendChild(closeButton);
     newItemLi.addEventListener("click", done, false);
     closeButton.addEventListener("click", deleteSelectedItem, false);
     
