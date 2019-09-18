@@ -7,12 +7,23 @@ window.addEventListener("DOMContentLoaded", ()=> {
   const deleteItem = document.querySelector(".close");
   const addItem = document.querySelector("#submit");
   let toDoListArr = getdata();
-  
+  const toggle = document.querySelector(".swich").firstElementChild;
+
+  toggle.addEventListener("change", changeTheme, false);
   addItem.addEventListener("submit", getNewItemInputValue, false);
   toDoListArr.forEach(element => {
     displayItems(element.text, element)
   }); 
-
+  
+  function changeTheme() {
+    const theme = document.querySelector("#main-link")
+    if(toggle.checked) {
+      theme.href = "css/dark-theme.css"
+    } else {
+      theme.href = "css/index.css"
+    }
+  }
+  
   displayRandomMessage(toDoListArr.length);
   
   // Takes the Input Value.
