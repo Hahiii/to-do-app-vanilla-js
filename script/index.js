@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
   let toDoListArr = getdata();
   
   addItem.addEventListener("submit", getNewItemInputValue, false);
-  
   toDoListArr.forEach(element => {
     displayItems(element.text, element)
   }); 
