@@ -1,74 +1,95 @@
-window.addEventListener("DOMContentLoaded", ()=> {
+import ToDoItem from './toDoItem.js';
+import { displayRandomMessage } from './uiHelpers.js';
 
+window.addEventListener("DOMContentLoaded", ()=> {
+  
+  const toDoList = document.querySelector("#to-do-list");
+  let toDoListArr = []
+  
   const deleteItem = document.querySelector("span");
   deleteItem.style.display = "none";  
-
-  let toDoList = document.querySelector("#to-do-list");
-  let newItem = "";
-  let toDoListArr = [];
-  let randomeText = [ "Wow nothing to do! Awesome...", 
-  "All done! Way to go", 
-  "All empty here, wanna add something to do?",
-  "Ready to chill? Cause there is nothing on this list" ];
-
-  const randomeTextInput = document.querySelector(".randomText").firstChild;
+  
+  
   const addItem = document.querySelector("#submit");
-  addItem.addEventListener("submit", addNewItem, false);
+  addItem.addEventListener("submit", getNewItemInputValue, false);
   
-  
-  rendom();
-  
-  // addeds a rendome text if List is emplty
-  function rendom() {
-    if (toDoListArr.length === 0) {
-      randomeTextInput.style.display = "flex"
-      let randomeTextIndex = Math.floor(Math.random() * randomeText.length);
-      randomeTextInput.innerText = randomeText[Number(randomeTextIndex)];
-    }
+  if (JSON.parse(localStorage.getItem("ToDoItems"))) {
+    toDoListArr = JSON.parse(localStorage.getItem("ToDoItems"));
+    toDoListArr.forEach(element => {
+      displayItems(element.text, element)
+    }); 
   }
   
-  // Takes the Input Value and calls the showAddedItem().
-  function addNewItem(e) {
+  if (toDoListArr.length === 0) {
+    displayRandomMessage();
+  }
+  
+  
+  // Takes the Input Value.
+  function getNewItemInputValue(e) {
     e.preventDefault();
-
     let input = document.querySelector("[name=todo]");
-    newItem = input.value;
+    
+    newItemObject(input.value);
     input.value = "";
-    showAddedItem();
   }
   
-  // showAddedItem() adds the Input Value to the To Do List.
-  function showAddedItem() {
+  // adds the Input Value to the To Do List.
+  function newItemObject(newToDoValue) {
     randomeTextInput.style.display = "none"
     
-    if (newItem !== "") {
-      let newItemLi = document.createElement("li");
-      let closeButton = deleteItem.cloneNode(true);
-      closeButton.style.display = 'inline-block';
-      
-      newItemLi.appendChild(document.createElement("p")).innerText = newItem;
-      newItemLi.appendChild(closeButton)
-      
-      newItemLi.addEventListener("click", done, false);
-      closeButton.addEventListener("click", deleteSelectedItem, false);
-      
-      toDoList.appendChild(newItemLi)
-      toDoListArr.push(newItemLi);
+    if (newToDoValue !== "") {
+      const item = new ToDoItem(newToDoValue);
+
+      toDoListArr.push(item);
+      displayItems(newToDoValue, item);
     }
   }
   
-  // Add done style when target is clicked.
+  // display item on the list
+  function displayItems(inputValue, itemObj) {
+    let closeButton = deleteItem.cloneNode(true);
+    closeButton.style.display = 'inline-block';
+    let newItemLi = document.createElement("li");
+    newItemLi.dataset.id = itemObj.id
+    newItemLi.appendChild(document.createElement("p")).innerText = inputValue;
+    newItemLi.appendChild(closeButton)
+    newItemLi.addEventListener("click", done, false);
+    closeButton.addEventListener("click", deleteSelectedItem, false);
+    
+    if (itemObj.isDone) {
+      newItemLi.firstChild.classList = "done";
+    }
+    
+    toDoList.appendChild(newItemLi)
+    localStorage.setItem("ToDoItems", JSON.stringify(toDoListArr));
+  }
+  
+  // Add style done
   function done(event) {
     if (event.target.nodeName === "P") {
       event.target.classList.add("done");
+      for (let i = 0; i < toDoListArr.length; i++) {
+        if (toDoListArr[i].id == event.target.parentNode.dataset.id) {
+          toDoListArr[i].isDone = true;
+          localStorage.setItem("ToDoItems", JSON.stringify(toDoListArr));
+        } 
+      }
     }
   }
   
-  // delete Item of the List
-  function deleteSelectedItem(e) {
-    toDoListArr.pop(e.target.parentNode);
-    e.target.parentNode.style.display = "none";
-    rendom();
+  // delete Item from the List
+  function deleteSelectedItem(event) {
+    for (let i = 0; i < toDoListArr.length; i++) {
+      if (toDoListArr[i].id == event.target.parentNode.dataset.id) {
+        toDoListArr.splice(i, 1);
+      } 
+    }
+    
+    toDoList.removeChild(event.target.parentNode)
+    localStorage.setItem("ToDoItems", JSON.stringify(toDoListArr));
+    
+    random();
   }
   
 });
