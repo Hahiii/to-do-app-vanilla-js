@@ -1,28 +1,19 @@
 import ToDoItem from './toDoItem.js';
 import getdata from './getData.js';
+import getTheme from './theme.js';
 import { displayRandomMessage } from './uiHelpers.js';
 
 window.addEventListener("DOMContentLoaded", ()=> {
   const toDoList = document.querySelector("#to-do-list");
   const deleteItem = document.querySelector(".close");
   const addItem = document.querySelector("#submit");
+  let theme = getTheme();
   let toDoListArr = getdata();
-  const toggle = document.querySelector(".swich").firstElementChild;
 
-  toggle.addEventListener("change", changeTheme, false);
   addItem.addEventListener("submit", getNewItemInputValue, false);
   toDoListArr.forEach(element => {
     displayItems(element.text, element)
   }); 
-  
-  function changeTheme() {
-    const theme = document.querySelector("#main-link")
-    if(toggle.checked) {
-      theme.href = "css/dark-theme.css"
-    } else {
-      theme.href = "css/index.css"
-    }
-  }
   
   displayRandomMessage(toDoListArr.length);
   
