@@ -7,8 +7,12 @@ window.addEventListener("DOMContentLoaded", ()=> {
   const toDoList = document.querySelector("#to-do-list");
   const deleteItem = document.querySelector(".close");
   const addItem = document.querySelector("#submit");
-  let theme = getTheme();
+
+  const toggle = document.querySelector(".swich").firstElementChild;
+  toggle.addEventListener("change", getTheme, false);
+  
   let toDoListArr = getdata();
+  
 
   addItem.addEventListener("submit", getNewItemInputValue, false);
   toDoListArr.forEach(element => {
