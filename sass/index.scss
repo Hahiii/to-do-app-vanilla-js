@@ -1,10 +1,11 @@
+@import "../node_modules/normalize.css/normalize.css";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 @import "theme";
-
 
 .container {
   height: 100vh;
