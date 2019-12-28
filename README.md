@@ -14,5 +14,5 @@ Install dependencies
 To use the project, either use the live demo or clone the repo and then run it on a local server.
 to run use:
 ```bash
-    npm run serve 
+    npm run dev 
 ```
