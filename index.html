@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
+  <link id="main-link" rel="stylesheet" href="css/index.css">
+  <title>To Do List</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>To Do List</h1>
+      <label class="swich">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </header>
+    <main>
+      <form id="submit" class="input-container">
+        <label for="todo">Add To Do's</label>
+        <input type="text" name="todo" placeholder="Input Your To Do">
+        <input type="submit" value="Add To Do">
+      </form>
+      <ul id="to-do-list">
+        <li class="randomText"><p></p><span class="close">X</span></li>
+      </ul>
+    </main>
+    <footer>
+      <h3>&copy; Hahi</h3>
+    </footer>
+  </div>
+  <script src="script/index.js" type="module"></script>
+</body>
+</html>
