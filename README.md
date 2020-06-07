@@ -1,18 +1,15 @@
-# To Do List
-This is yet another to do app build with vanilla JS
+# Todo app
 
-## Live Demo
-Here you can find a live demo: [https://hahiii.github.io/to-do-app-vanilla-js/](https://hahiii.github.io/to-do-app-vanilla-js/)
+This is a todo app build with vanilla JavaScript
+
+![Todo app](todo-app.png)
 
 ## Setup
-Install dependencies
-```bash
-    npm install 
-```
 
-## Running the project
-To use the project, either use the live demo or clone the repo and then run it on a local server.
-to run use:
-```bash
-    npm run dev 
-```
+Make sure you have node installed, then run `npm install`
+
+## Run locally
+
+To run the project locally run `npm dev`.
+
+You can then open the project on [http://127.0.0.1:8080](http://127.0.0.1:8080) in the browser.
